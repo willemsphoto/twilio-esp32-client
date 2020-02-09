@@ -1,5 +1,5 @@
 /*
- * Twilio SMS and MMS on ESP8266 Example.
+ * Twilio SMS and MMS on ESP32 Example.
  */
 
 #include <WiFi.h>
@@ -37,9 +37,9 @@ const char* auth_token = "Your AUTH TOKEN";
 // (check the console, link above).
 String to_number    = "+18005551212";
 String from_number = "+18005551212";
-String message_body    = "Hello from Twilio and the ESP8266!";
+String message_body    = "Hello from Twilio and the ESP32!";
 
-// The 'authorized number' to text the ESP8266 for our example
+// The 'authorized number' to text the ESP32 for our example
 String master_number    = "+18005551212";
 
 // Optional - a url to an image.  See 'MediaUrl' here: 
@@ -127,7 +127,7 @@ extern SoftwareSerial swSer(14, 4, false, 256);
 
         } else {
                 response += "<Response><Message>"
-                "Look: a SMS response from an ESP8266!"
+                "Look: a SMS response from an ESP32!"
                 "</Message></Response>";
         }
 
@@ -135,7 +135,7 @@ extern SoftwareSerial swSer(14, 4, false, 256);
 }
 
 /*
- * Setup function for ESP8266 Twilio Example.
+ * Setup function for ESP32 Twilio Example.
  * 
  * Here we connect to a friendly wireless network, set the time, instantiate 
  * our twilio object, optionally set up software serial, then send a SMS 
