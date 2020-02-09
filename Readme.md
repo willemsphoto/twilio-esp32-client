@@ -1,3 +1,7 @@
+# Twilio ESP32 library
+
+This is a fork of [Twilio's ESP8266 example library](https://github.com/TwilioDevEd/twilio_esp8266_arduino_example). It contains a client for sending and receiving SMS and MMS using Twilio. Original README follows:
+
 # Twilio Messaging Example on the ESP8266 (C++, Arduino IDE)
 
 An example application that demonstrates how to send SMS or MMS messages with an ESP8266 connected to a friendly WiFi network, as well as hosts a basic server to receive and respond to SMS and MMS messages.
