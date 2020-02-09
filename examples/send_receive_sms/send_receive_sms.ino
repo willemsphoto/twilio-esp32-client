@@ -2,9 +2,9 @@
  * Twilio SMS and MMS on ESP8266 Example.
  */
 
-#include <ESP8266WiFi.h>
-#include <WiFiClientSecure.h>
-#include <ESP8266WebServer.h>
+#include <WiFi.h>
+//#include <WiFiClientSecure.h>
+#include <WebServer.h>
 
 #include "twilio.hpp"
 
@@ -14,13 +14,14 @@
 // Print debug messages over serial?
 #define USE_SERIAL 1
 
+#ifndef LED_BUILTIN
+// Define the built-in LED, if the platform does not
+#define LED_BUILTIN 0
+#endif
+
 // Your network SSID and password
 const char* ssid = "The_Sailboat";
 const char* password = "club848!";
-
-// Find the api.twilio.com SHA1 fingerprint, this one was valid as 
-// of August 2019.
-const char fingerprint[] = "06 86 86 C0 A0 ED 02 20 7A 55 CC F0 75 BB CF 24 B1 D9 C0 49";
 
 // Twilio account specific details, from https://twilio.com/console
 // Please see the article: 
@@ -47,7 +48,7 @@ String media_url = "";
 
 // Global twilio objects
 Twilio *twilio;
-ESP8266WebServer twilio_server(8000);
+WebServer twilio_server(8000);
 
 //  Optional software serial debugging
 #if USE_SOFTWARE_SERIAL == 1
@@ -142,7 +143,7 @@ extern SoftwareSerial swSer(14, 4, false, 256);
  */
 void setup() {
         WiFi.begin(ssid, password);
-        twilio = new Twilio(account_sid, auth_token, fingerprint);
+        twilio = new Twilio(account_sid, auth_token);
 
         #if USE_SERIAL == 1
         swSer.begin(115200);
@@ -172,7 +173,6 @@ void setup() {
         twilio_server.on("/message", handle_message);
         twilio_server.begin();
 
-        // Use LED_BUILTIN to find the LED pin and set the GPIO to output
         pinMode(LED_BUILTIN, OUTPUT);
 
         #if USE_SERIAL == 1
